@@ -88,13 +88,13 @@ class MyRunnable(Runnable):
         save_user = bool(payload.get("save_user_variables", False))
         rows = payload.get("rows") or []
 
-        dss_url = _plugin_setting(self.plugin_config, "dss_url")
+        dss_host = _plugin_setting(self.plugin_config, "dss_host")
         api_key = _plugin_setting(self.plugin_config, "api_key")
-        if not dss_url or not api_key:
-            return _html_error("Plugin is not configured: missing dss_url/api_key")
+        if not dss_host or not api_key:
+            return _html_error("Plugin is not configured: missing dss_host/api_key")
 
         user_client = dataiku.api_client()
-        admin_client = dataikuapi.DSSClient(dss_url, api_key)
+        admin_client = dataikuapi.DSSClient(dss_host, api_key)
 
         # Write to project variables (standard)
         project = user_client.get_project(self.project_key)
@@ -156,4 +156,3 @@ class MyRunnable(Runnable):
         body += "</ul>"
 
         return _html_page("Add Snowflake variables", body)
-

@@ -67,6 +67,14 @@ define([], function() {
       }
       $scope.ui.syncSelectionJson();
 
+      // If setup errored, still initialize a minimal payload.
+      if (setup.error) {
+        $scope.ui.rows = [];
+        $scope.ui.loadUser = false;
+        $scope.ui.saveUser = false;
+        $scope.ui.syncSelectionJson();
+      }
+
       // If user edits the prefix, recompute variable names.
       $scope.$watch('ui.prefix', function(newPrefix, oldPrefix) {
         if (newPrefix === oldPrefix) return;
@@ -87,4 +95,3 @@ define([], function() {
     }
   };
 });
-

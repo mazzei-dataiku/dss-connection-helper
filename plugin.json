@@ -11,5 +11,22 @@
         "tags": ["Admin", "Connections"],
         "url": "",
         "licenseInfo": "Apache Software License"
-    }
+    },
+    "params": [
+        {
+            "name": "dss_host",
+            "label": "DSS host",
+            "type": "STRING",
+            "description": "Base URL of the DSS instance used by the admin API client (e.g. http://localhost:10000)",
+            "mandatory": true,
+            "defaultValue": "http://localhost:10000"
+        },
+        {
+            "name": "api_key",
+            "label": "Admin API key",
+            "type": "PASSWORD",
+            "description": "Admin-level API key used to compute Snowflake metadata",
+            "mandatory": true
+        }
+    ]
 }

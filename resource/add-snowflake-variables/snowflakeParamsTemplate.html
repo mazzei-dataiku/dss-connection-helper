@@ -1,4 +1,8 @@
 <div class="add-snowflake-variables">
+  <div class="alert alert-error" ng-if="setup.error">
+    <strong>Setup error:</strong> {{setup.error}}
+  </div>
+
   <p class="muted">This macro builds a table from your visible Snowflake connections. Edit the values, then run the macro.</p>
 
   <label class="checkbox">
@@ -16,7 +20,7 @@
   </div>
 
   <h4 style="margin-top: 16px">Variables</h4>
-  <table class="table">
+  <table class="table" ng-if="!setup.error">
     <thead>
       <tr>
         <th>Connection</th>
@@ -39,7 +43,10 @@
     </tbody>
   </table>
 
+  <div class="muted" ng-if="!setup.error && (!ui.rows || ui.rows.length === 0)">
+    No Snowflake variables found for your visible connections.
+  </div>
+
   <!-- Hidden field that the runnable consumes -->
   <textarea style="display:none" ng-model="config.selection_json"></textarea>
 </div>
-

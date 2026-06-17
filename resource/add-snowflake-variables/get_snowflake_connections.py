@@ -84,13 +84,13 @@ def do(payload, config, plugin_config, inputs):
     project_key = (config or {}).get("projectKey") or (payload or {}).get("projectKey") or ""
     user_client = dataiku.api_client()
 
-    dss_url = _plugin_setting(plugin_config, "dss_url")
+    dss_host = _plugin_setting(plugin_config, "dss_host")
     api_key = _plugin_setting(plugin_config, "api_key")
-    if not dss_url or not api_key:
+    if not dss_host or not api_key:
         return {
-            "error": "Plugin is not configured: missing dss_url/api_key",
+            "error": "Plugin is not configured: missing dss_host/api_key",
         }
-    admin_client = dataikuapi.DSSClient(dss_url, api_key)
+    admin_client = dataikuapi.DSSClient(dss_host, api_key)
 
     connections = _list_user_visible_snowflake_connections(user_client)
 
