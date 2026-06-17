@@ -31,5 +31,29 @@
         "url": "",
 
         "licenseInfo": "Apache Software License"
-    }
+    },
+
+    "params": [
+        {
+            "name": "dss_url",
+            "label": "DSS URL",
+            "type": "STRING",
+            "description": "Base URL of the DSS instance used by the admin API client (e.g. https://dss.mycorp.tld)",
+            "mandatory": true
+        },
+        {
+            "name": "api_key",
+            "label": "Admin API key",
+            "type": "PASSWORD",
+            "description": "Admin-level API key used to compute Snowflake metadata",
+            "mandatory": true
+        },
+        {
+            "name": "cache_ttl_seconds",
+            "label": "Metadata cache TTL (seconds)",
+            "type": "INT",
+            "description": "How long to reuse computed Snowflake metadata per user/connection (0 disables caching)",
+            "defaultValue": 900
+        }
+    ]
 }
