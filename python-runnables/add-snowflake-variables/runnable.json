@@ -8,7 +8,7 @@
 
     "params": [],
 
-    "paramsTemplate": "snowflakeParamsTemplate.html",
+    "paramsTemplate": "add-snowflake-variables/snowflakeParamsTemplate.html",
     "paramsModule": "snowflakeParamsModule",
     "paramsPythonSetup": "add-snowflake-variables/get_snowflake_connections.py",
 
