@@ -2,10 +2,10 @@
 {
     "meta": {
         // label: name of the runnable as displayed, should be short
-        "label": "Add Snowflake variables",
+        "label": "Custom runnable add-snowflake-variables",
 
         // description: longer string to help end users understand what this runnable does
-        "description": "Macro that previews and writes Snowflake-related values into this project's variables.",
+        "description": "",
 
         // icon: must be one of the FontAwesome 5.15.4 icons, complete list here at https://fontawesome.com/v5/docs/
         "icon": "fas fa-puzzle-piece"
@@ -28,42 +28,37 @@
     */
     "params": [
         {
-            "name": "action",
-            "label": "Action",
+            "name": "parameter1",
+            "label": "User-readable name",
+            "type": "STRING",
+            "description": "Some documentation for parameter1",
+            "mandatory": true
+        },
+        {
+            "name": "parameter2",
+            "label": "parameter2",
+            "type": "INT",
+            "defaultValue": 42
+            /* Note that standard json parsing will return it as a double in Python (instead of an int), so you need to write
+               int(self.config()['parameter2'])
+            */
+        },
+
+        /* A "SELECT" parameter is a multi-choice selector. Choices are specified using the selectChoice field*/
+        {
+            "name": "parameter8",
+            "label": "parameter8",
             "type": "SELECT",
             "selectChoices": [
-                {"value": "preview", "label": "Preview"},
-                {"value": "apply", "label": "Apply"},
-                {"value": "save", "label": "Save selections"},
-                {"value": "reset_saved", "label": "Reset saved selections"}
-            ],
-            "defaultValue": "preview"
-        },
-        {
-            "name": "connection_name",
-            "label": "Snowflake connection",
-            "type": "STRING",
-            "description": "Optional. If empty, the macro will show user-visible Snowflake connections in the HTML UI.",
-            "mandatory": false
-        },
-        {
-            "name": "variable_prefix",
-            "label": "Variable prefix",
-            "type": "STRING",
-            "defaultValue": "SNOWFLAKE_"
-        },
-        {
-            "name": "dry_run",
-            "label": "Dry run",
-            "type": "BOOLEAN",
-            "defaultValue": true
-        },
-        {
-            "name": "selection_json",
-            "label": "Selection JSON",
-            "type": "TEXTAREA",
-            "description": "Advanced: JSON payload used to apply/save selections. Usually managed by the HTML UI.",
-            "mandatory": false
+                {
+                    "value": "val_x",
+                    "label": "display name for val_x"
+                },
+                {
+                    "value": "val_y",
+                    "label": "display name for val_y"
+                }
+            ]
         }
     ],
 
@@ -97,8 +92,9 @@
         - targetParamsKey(s): name of the parameter(s) that will be filled with the selected object
     */
     "macroRoles": [
-        {
-            "type": "PROJECT_MACROS"
-        }
+     /* {
+            "type": "DATASET",
+            "targetParamsKey": "input_dataset"
+        } */
     ]
 }
